@@ -1,10 +1,13 @@
 package com.yangmiemie.spider.page;
 
 import com.yangmiemie.spider.util.CharsetDetector;
+import org.apache.http.client.CookieStore;
+import org.apache.http.cookie.Cookie;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 /**
  * Created by Yang.
@@ -19,11 +22,19 @@ public class Page {
     private String charset;     //字符编码
     private String url;         //url路径
     private String contentType; //内容类型
+    private CookieStore cookies; //cookies
 
     public Page(byte[] content, String url, String contentType) {
         this.content = content;
         this.url = url;
         this.contentType = contentType;
+    }
+
+    public Page(byte[] content, String url, String contentType, CookieStore cookies) {
+        this.content = content;
+        this.url = url;
+        this.contentType = contentType;
+        this.cookies = cookies;
     }
 
     public String getCharset() {
@@ -64,6 +75,14 @@ public class Page {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    public CookieStore getCookies() {
+        return cookies;
+    }
+
+    public void setCookies(CookieStore cookies) {
+        this.cookies = cookies;
     }
 
     /*

@@ -1,6 +1,8 @@
 package com.yangmiemie.spider.main;
 
+import com.yangmiemie.spider.link.Links;
 import com.yangmiemie.spider.page.Page;
+import com.yangmiemie.spider.page.PageParserTool;
 import com.yangmiemie.spider.util.URL;
 import org.apache.http.*;
 import org.apache.http.client.CookieStore;
@@ -19,6 +21,7 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Yang.
@@ -27,13 +30,13 @@ import java.util.List;
  * Description:
  */
 public class Login {
-    private String isRemember = "0";
-    private String role = "student";
+    private String isRemember = "1";
+    private String role = "Student";
     private String userName = "1310321113";
     private String password = "yhh9441000";
     private AbstractHttpClient client = new DefaultHttpClient();
 
-    public Page login(String validateCode) throws IOException {
+    public CookieStore login(String validateCode, CookieStore cookies) throws IOException {
         Page page = null;
         if (validateCode.length() != 4) {
             System.out.println("验证码格式有误！");
@@ -48,30 +51,12 @@ public class Login {
         formParams.add(new BasicNameValuePair("ValidateCode", validateCode));
         UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(formParams, "UTF-8");
         loginPost.setEntity(formEntity);
+        client.setCookieStore(cookies);
         HttpResponse response = client.execute(loginPost);
         HttpEntity entity = response.getEntity();
         if (entity != null) {
             entity.consumeContent();
         }
-
-        Header[] headers = response.getHeaders("Set-Cookie");
-        //访问首页获取cookie
-        HttpGet httpGet = new HttpGet(URL.INDEX.getUrl());
-        httpGet.setHeader("Referer", URL.LOGIN.getUrl());
-        // 执行get请求
-        response = client.execute(httpGet);
-        entity = response.getEntity(); // 获取返回实体
-        String content = "";
-        if (entity != null) {
-            // 转化为文本信息, 设置爬取网页的字符集，防止乱码
-            content = EntityUtils.toString(entity, "UTF-8");
-        }
-
-        CookieStore cookie = client.getCookieStore();
-        System.out.println(">> login response content: \n" + content);
-
-        List<Cookie> cookieList = cookie.getCookies();
-        System.out.println("cookie2222: " + cookieList);
 
         int statusCode = response.getStatusLine().getStatusCode();
         System.out.println("statusCode: " + statusCode);
@@ -79,10 +64,19 @@ public class Login {
             System.err.println("Method failed: " + response.getStatusLine());
         }
 
-        entity = response.getEntity(); // 获取返回实体
+        HttpGet indexGet = new HttpGet(URL.SCORE.getUrl());
+        response = client.execute(indexGet);
+        entity = response.getEntity();
+
         byte[] responseBody = EntityUtils.toByteArray(entity);
         String contentType = entity.getContentType().getValue();
         page = new Page(responseBody, URL.LOGIN.getUrl(), contentType); //封装成为页面
-        return page;
+        //得到超链接
+        Set<String> links = PageParserTool.getScoreLinks(page);
+        for (String link : links) {
+            Links.addUnvisitedUrlQueue(link);
+            System.out.println("新增爬取路径: " + link);
+        }
+        return client.getCookieStore();
     }
 }

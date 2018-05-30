@@ -9,7 +9,9 @@ package com.yangmiemie.spider.util;
 public enum URL {
     LOGIN("http://run.hbut.edu.cn/Account/LogOn"),
     VALIDATE_CODE("http://run.hbut.edu.cn/Account/GetValidateCode"),
-    INDEX("http://run.hbut.edu.cn");
+    INDEX("http://run.hbut.edu.cn"),
+    SCORE("http://run.hbut.edu.cn/StuGrade/Index");
+
 
     String url;
 

@@ -1,10 +1,13 @@
 package com.yangmiemie.spider.page;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.apache.tomcat.util.buf.Utf8Encoder;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -58,6 +61,46 @@ public class PageParserTool {
         return links;
     }
 
+    /**
+     * @param page
+     * @return
+     */
+    public static Set<String> getScoreLinks(Page page) {
+        Set<String> links = new HashSet<>();
+        Elements es = select(page, "option");
+        Iterator iterator = es.iterator();
+        while (iterator.hasNext()) {
+            Element element = (Element) iterator.next();
+            if (element.hasAttr("value")) {
+                String str = element.attr("value");
+                String year = str.substring(0, 4);
+                String number = str.substring(str.length() - 1);
+                switch (number) {
+                    case "1":
+                        number = "一";
+                        break;
+                    case "2":
+                        number = "二";
+                        break;
+                    case "3":
+                        number = "三";
+                        break;
+                    case "4":
+                        number = "四";
+                        break;
+                }
+
+                String link = null;
+                try {
+                    link = "http://run.hbut.edu.cn/StuGrade/Index?SemesterName=" + str + "&SemesterNameStr=" + URLEncoder.encode(year + "学年 第" + number + "学期", "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                links.add(link);
+            }
+        }
+        return links;
+    }
 
     /**
      * 获取网页中满足指定css选择器的所有元素的指定属性的集合

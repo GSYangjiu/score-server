@@ -1,0 +1,36 @@
+server:
+  port: 8080
+
+file:
+  publicPath: E:/ele_img
+  imgPath: E:/ele_img/img
+
+logging:
+  path: E:/Log/score
+  file: server
+  config: classpath:logback.spring.xml
+
+spring:
+#    datasource:
+#      url: jdbc:mysql://45.77.199.105:3306/ele?useUnicode=true&characterEncoding=gbk&zeroDateTimeBehavior=convertToNull
+#      username:
+#      password:
+#      driver-class-name: com.mysql.jdbc.Driver
+#      type: com.alibaba.druid.pool.DruidDataSource
+#      tomcat:
+#        initial-size: 5
+#        minIdle: 5
+#        maxActive: 20
+#        maxWait: 60000
+    data:
+      mongodb:
+        host: 132.126.3.236
+        username:
+        password:
+        port: 27017
+        database: Ele
+    mvc:
+      static-path-pattern: /**
+    resources:
+      static-locations: classpath:/META-INF/resources/,classpath:/resources/,\classpath:/static/,classpath:/public/,file:${file.publicPath}
+
