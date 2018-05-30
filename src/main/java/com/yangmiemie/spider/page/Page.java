@@ -1,5 +1,6 @@
 package com.yangmiemie.spider.page;
 
+import com.yangmiemie.spider.util.CharsetDetector;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -12,7 +13,7 @@ import java.io.UnsupportedEncodingException;
  * Description:
  */
 public class Page {
-    private byte[] content;
+    private byte[] content;     //response
     private String html;        //网页源码字符串
     private Document doc;       //网页DOM文档
     private String charset;     //字符编码

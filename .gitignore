@@ -29,3 +29,7 @@ src/main/resources/application\.properties
 log/
 
 src/test/java/com/yangmiemie/ele/JDBCTest\.java
+out
+gradle
+.gradle
+local\.properties
