@@ -26,7 +26,7 @@ spring:
       mongodb:
         host: 132.126.3.236
         username: vincent
-        password: 1Fe0qudDv!HNJQJV
+        password:
         port: 27017
         database: score
     mvc:

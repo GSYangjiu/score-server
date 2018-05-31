@@ -27,7 +27,7 @@ public class Spider {
 
     public static void main(String[] args) {
         Spider spider = new Spider();
-        User user = new User("1", "Student", "1310321113", "yhh9441000");
+        User user = new User("1", "Student", "1310321113", "");
         spider.crawling(user);
     }
 
