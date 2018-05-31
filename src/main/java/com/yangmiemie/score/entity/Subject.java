@@ -103,4 +103,22 @@ public class Subject {
                 ", announce='" + announce + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Subject)) return false;
+
+        Subject subject = (Subject) o;
+
+        if (!getStudentId().equals(subject.getStudentId())) return false;
+        return getNum().equals(subject.getNum());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getStudentId().hashCode();
+        result = 31 * result + getNum().hashCode();
+        return result;
+    }
 }

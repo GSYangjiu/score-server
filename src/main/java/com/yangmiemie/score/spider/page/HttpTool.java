@@ -1,12 +1,8 @@
 package com.yangmiemie.score.spider.page;
 
 
-import com.yangmiemie.score.dao.ISubjectDao;
-import com.yangmiemie.score.dao.impl.SubjectDaoImpl;
 import com.yangmiemie.score.entity.Subject;
 import com.yangmiemie.score.entity.User;
-import com.yangmiemie.score.service.ISubjectService;
-import com.yangmiemie.score.service.impl.SubjectServiceImpl;
 import com.yangmiemie.score.spider.link.Links;
 import com.yangmiemie.score.spider.util.FileTool;
 import com.yangmiemie.score.spider.util.URL;
@@ -25,9 +21,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
