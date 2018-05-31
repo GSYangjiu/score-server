@@ -1,5 +1,8 @@
 package com.yangmiemie.score.entity;
 
+import com.yangmiemie.score.common.utils.autoKey.AutoIncKey;
+import org.springframework.data.annotation.Id;
+
 /**
  * Created by Yang.
  * Email : vincent1094259423@yahoo.com
@@ -7,6 +10,10 @@ package com.yangmiemie.score.entity;
  * Description:
  */
 public class Subject {
+    @Id
+    protected String _id;
+    @AutoIncKey
+    private Long id;
     private Long studentId;
     private String num;         //任务编号
     private String name;
@@ -16,6 +23,22 @@ public class Subject {
     private Double score;
     private String signUp;      //补考报名
     private String announce;    //公布
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getStudentId() {
         return studentId;
@@ -122,3 +145,5 @@ public class Subject {
         return result;
     }
 }
+
+    hanging your username can have unintended side effects.
