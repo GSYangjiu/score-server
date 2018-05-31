@@ -11,5 +11,3 @@ spring:
 logging:
     level:  # 日志级别
         org.springframework.web: DEBUG # 配置spring web日志级别
-        org.apache.http: warn
-        org.apache.http.wire: warn

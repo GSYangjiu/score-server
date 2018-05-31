@@ -1,4 +1,4 @@
-package com.yangmiemie.spider.link;
+package com.yangmiemie.score.spider.link;
 
 import java.util.HashSet;
 import java.util.LinkedList;

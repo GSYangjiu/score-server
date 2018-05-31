@@ -1,4 +1,4 @@
-package com.yangmiemie.spider.page;
+package com.yangmiemie.score.spider.page;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.apache.tomcat.util.buf.Utf8Encoder;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -92,6 +91,7 @@ public class PageParserTool {
 
                 String link = null;
                 try {
+                    //拼接每个学期访问Url 加入访问池
                     link = "http://run.hbut.edu.cn/StuGrade/Index?SemesterName=" + str + "&SemesterNameStr=" + URLEncoder.encode(year + "学年 第" + number + "学期", "UTF-8");
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();

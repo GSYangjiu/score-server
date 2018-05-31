@@ -1,4 +1,4 @@
-package com.yangmiemie.spider.util;
+package com.yangmiemie.score.spider.util;
 
 /**
  * Created by Yang.
@@ -7,10 +7,10 @@ package com.yangmiemie.spider.util;
  * Description:
  */
 public enum URL {
-    LOGIN("http://run.hbut.edu.cn/Account/LogOn"),
-    VALIDATE_CODE("http://run.hbut.edu.cn/Account/GetValidateCode"),
     INDEX("http://run.hbut.edu.cn"),
-    SCORE("http://run.hbut.edu.cn/StuGrade/Index");
+    LOGIN("/Account/LogOn"),
+    VALIDATE_CODE("/Account/GetValidateCode"),
+    SCORE("/StuGrade/Index");
 
 
     String url;
@@ -20,7 +20,9 @@ public enum URL {
     }
 
     public String getUrl() {
-        return url;
+        if (this.equals(INDEX))
+            return url;
+        return INDEX.url + url;
     }
 
     public void setUrl(String url) {

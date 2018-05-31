@@ -1,6 +1,6 @@
-package com.yangmiemie.spider.util;
+package com.yangmiemie.score.spider.util;
 
-import com.yangmiemie.spider.page.Page;
+import com.yangmiemie.score.spider.page.Page;
 
 import java.io.DataOutputStream;
 import java.io.File;

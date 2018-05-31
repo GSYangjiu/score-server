@@ -1,4 +1,4 @@
-package com.yangmiemie.spider.util;
+package com.yangmiemie.score.spider.util;
 
 
 

@@ -1,4 +1,4 @@
-package com.yangmiemie.spider.link;
+package com.yangmiemie.score.spider.link;
 
 /**
  * Created by Yang.

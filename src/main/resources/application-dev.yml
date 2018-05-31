@@ -25,10 +25,10 @@ spring:
     data:
       mongodb:
         host: 132.126.3.236
-        username:
-        password:
+        username: vincent
+        password: 1Fe0qudDv!HNJQJV
         port: 27017
-        database: Ele
+        database: score
     mvc:
       static-path-pattern: /**
     resources:

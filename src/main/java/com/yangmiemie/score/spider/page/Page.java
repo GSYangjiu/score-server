@@ -1,13 +1,11 @@
-package com.yangmiemie.spider.page;
+package com.yangmiemie.score.spider.page;
 
-import com.yangmiemie.spider.util.CharsetDetector;
+import com.yangmiemie.score.spider.util.CharsetDetector;
 import org.apache.http.client.CookieStore;
-import org.apache.http.cookie.Cookie;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 
 /**
  * Created by Yang.
